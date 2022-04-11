@@ -1,0 +1,8 @@
+.currentsavings {
+    transition: "0.3s";
+    max-width: 300px;
+    margin: "auto";
+    box-shadow: "0 8px 40px -12px rgba(0,0,0,0.3)";
+    padding-top: 100px;
+    background-color: blueviolet;
+}
