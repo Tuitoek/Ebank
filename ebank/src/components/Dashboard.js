@@ -9,7 +9,7 @@ import Transfer from "../components/Transfer"
 
 
 const Dashboard = () => {
-    const [name, setName] = useState('');
+    const [username, setName] = useState('');
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
     const [users, setUsers] = useState([]);
@@ -25,7 +25,7 @@ const Dashboard = () => {
             const response = await axios.get('http://localhost:5000/token');
             setToken(response.data.accessToken);
             const decoded = jwt_decode(response.data.accessToken);
-            setName(decoded.name);
+            setName(decoded.username);
             setExpire(decoded.exp);
         } catch (error) {
             if (error.response) {
@@ -70,7 +70,7 @@ const Dashboard = () => {
         div className = "container mt-5" >
         <
         h1 > Finbank Ebanking board < /h1> <
-        h1 > Welcome Back: { name } < /h1> <br/ > < br / > <
+        h1 > Welcome Back: { username } < /h1> <br/ > < br / > <
         Currentsavings / >
         <
         Savings / >

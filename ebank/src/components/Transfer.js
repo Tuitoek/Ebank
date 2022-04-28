@@ -14,26 +14,24 @@ import e from 'express';
 const Transfer = () => {
     const [amountTransferred, setAmountTransferred] = useState("")
     return ( <
-            div className = "wrapper" >
-            <
-            h1 > How About Them Apples <
-            /h1> {
-            submitting && < div > Submitting form < /div>
-        } <
-        form onSubmit = { handleSubmit } >
+        div className = "wrapper" >
+        <
+        h1 > How About Them Apples <
+        /h1>  <
+        form >
         <
         fieldset >
         <
         label >
         <
         p > Name < /p>  <
-    input name = "name"
-    onChange = { handleChange }
-    / > < /label > < /fieldset > <
-    button type = "submit" > Submit < /button> < /
-    form > <
+        input user = "username" / >
+        <
+        /label > < /fieldset > <
+        button type = "submit" > Submit < /button> < /
+        form > <
         /div>
-)
+    )
 }
 
 export default Transfer

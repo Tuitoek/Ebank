@@ -20,8 +20,10 @@ export const Register = async(req, res) => {
     const hashPassword = await bcrypt.hash(password, salt);
     try {
         await Users.create({
-            name: name,
-            email: email,
+            firstname: firstname,
+            lastname: lastname,
+            username: username,
+            accountnumber: accountnumber,
             password: hashPassword
         });
         res.json({ msg: "Registration Successful" });
@@ -34,18 +36,17 @@ export const Login = async(req, res) => {
     try {
         const user = await Users.findAll({
             where: {
-                email: req.body.email
+                username: req.body.username
             }
         });
         const match = await bcrypt.compare(req.body.password, user[0].password);
         if (!match) return res.status(400).json({ msg: "Wrong Password" });
         const userId = user[0].id;
-        const name = user[0].name;
-        const email = user[0].email;
-        const accessToken = jwt.sign({ userId, name, email }, process.env.ACCESS_TOKEN_SECRET, {
+        const username = user[0].username;
+        const accessToken = jwt.sign({ userId, username, email }, process.env.ACCESS_TOKEN_SECRET, {
             expiresIn: '15s'
         });
-        const refreshToken = jwt.sign({ userId, name, email }, process.env.REFRESH_TOKEN_SECRET, {
+        const refreshToken = jwt.sign({ userId, username, email }, process.env.REFRESH_TOKEN_SECRET, {
             expiresIn: '1d'
         });
         await Users.update({ refresh_token: refreshToken }, {
